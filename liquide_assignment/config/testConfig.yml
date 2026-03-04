@@ -1,0 +1,34 @@
+app:
+  appName: assignment
+  port: 8000
+
+rateLimit:
+  loginService: 15
+  orderService: 15
+
+session:
+  expiryTime: 15
+  secret: "abcd"
+  sessionsPerPlatform: 2
+
+logger:
+  consoleLoggingEnabled: true
+  fileName: ../../logs/access.log
+  errorFileName: ../../logs/error.log
+  maxSizeInMB: 1024
+  maxBackups: 10
+  maxAgeInDays: 2
+  compress: true
+
+smRedis:
+  host: 127.0.0.1
+  port: 6379
+  password:
+  user: default
+
+mongoDb:
+  host: mongodb://localhost:27017/
+  port: 5432
+  password: CfVhlA8niJNyozwx
+  user: dazzling420_db_user
+  db_name: task
