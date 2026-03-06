@@ -1,7 +1,5 @@
 package config
 
-import "time"
-
 const (
 	BaseConfigPath   = "../../config/"
 	ConfigFileSuffix = "Config.yml"
@@ -29,9 +27,9 @@ type RateLimit struct {
 }
 
 type Session struct {
-	ExpiryTime          time.Duration `yaml:"expiryTime"`
-	Secret              string        `yaml:"secret"`
-	SessionsPerPlatform int           `yaml:"sessionsPerPlatform"`
+	ExpiryTime          int    `yaml:"expiryTime"`
+	Secret              string `yaml:"secret"`
+	SessionsPerPlatform int    `yaml:"sessionsPerPlatform"`
 }
 
 type Redis struct {

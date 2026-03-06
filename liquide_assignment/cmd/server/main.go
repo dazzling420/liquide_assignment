@@ -47,7 +47,7 @@ func main() {
 
 	// Creating Services
 	loginService := login.InitLoginService(loggerService, config, redisRepo, mongoRepo, jwtRepo)
-	orderService := order.InitOrderService(loggerService, config, redisRepo, mongoRepo)
+	orderService := order.InitOrderService(loggerService, config, redisRepo, mongoRepo, jwtRepo)
 	authService := authentication.InitAuthService(loggerService, config, redisRepo, mongoRepo, jwtRepo)
 
 	router := rest.InitHandlerNew(authService, loginService, orderService)

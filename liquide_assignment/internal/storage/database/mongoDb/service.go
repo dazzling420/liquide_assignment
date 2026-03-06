@@ -2,6 +2,7 @@ package mongodb
 
 import (
 	"liquide_assignment/internal/service/login"
+	"liquide_assignment/internal/service/order"
 
 	"go.mongodb.org/mongo-driver/bson"
 )
@@ -38,4 +39,13 @@ func (s *MongoRepository) DoesUserExist(pan string) bool {
 		return false
 	}
 	return true
+}
+
+func (s *MongoRepository) AddOrderEntry(orderRequest order.OrderRequest) (bool, error) {
+	collection := s.db.Database("liquide").Collection("orders")
+	_, err := collection.InsertOne(s.ctx, orderRequest)
+	if err != nil {
+		return false, err
+	}
+	return true, nil
 }

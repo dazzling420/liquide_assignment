@@ -1,0 +1,62 @@
+{"level":"INFO","time":"2026-03-04T23:27:22.176+0530","file":"server/main.go:24","message":"=========================== LOGS START HERE ==========================="}
+{"level":"INFO","time":"2026-03-04T23:27:22.177+0530","file":"server/main.go:25","message":"Logger initialized"}
+{"level":"INFO","time":"2026-03-04T23:27:22.177+0530","file":"server/main.go:33","message":"Mongo client initialized"}
+{"level":"INFO","time":"2026-03-04T23:27:22.192+0530","file":"server/main.go:41","message":"Redis client initialized"}
+{"level":"INFO","time":"2026-03-04T23:27:22.193+0530","file":"server/main.go:55","message":"Initializing done!!!!"}
+{"level":"INFO","time":"2026-03-04T23:27:22.193+0530","file":"server/main.go:57","message":"Application listening on 8000"}
+{"level":"INFO","time":"2026-03-05T15:42:06.625+0530","file":"server/main.go:24","message":"=========================== LOGS START HERE ==========================="}
+{"level":"INFO","time":"2026-03-05T15:42:06.626+0530","file":"server/main.go:25","message":"Logger initialized"}
+{"level":"INFO","time":"2026-03-05T15:42:06.626+0530","file":"server/main.go:33","message":"Mongo client initialized"}
+{"level":"INFO","time":"2026-03-05T15:42:06.652+0530","file":"server/main.go:41","message":"Redis client initialized"}
+{"level":"INFO","time":"2026-03-05T15:42:06.652+0530","file":"server/main.go:55","message":"Initializing done!!!!"}
+{"level":"INFO","time":"2026-03-05T15:42:06.652+0530","file":"server/main.go:57","message":"Application listening on 8000"}
+{"level":"ERROR","time":"2026-03-05T15:44:14.821+0530","file":"login/service.go:42","message":"Invalid requestEOF","response_message":"unknown"}
+{"level":"ERROR","time":"2026-03-05T16:02:36.208+0530","file":"login/service.go:121","message":"Failed to issue token key is of invalid type: HMAC sign expects []byte","response_message":"key is of invalid type: HMAC sign expects []byte"}
+{"level":"INFO","time":"2026-03-05T16:06:01.463+0530","file":"server/main.go:24","message":"=========================== LOGS START HERE ==========================="}
+{"level":"INFO","time":"2026-03-05T16:06:01.464+0530","file":"server/main.go:25","message":"Logger initialized"}
+{"level":"INFO","time":"2026-03-05T16:06:01.464+0530","file":"server/main.go:33","message":"Mongo client initialized"}
+{"level":"INFO","time":"2026-03-05T16:06:01.478+0530","file":"server/main.go:41","message":"Redis client initialized"}
+{"level":"INFO","time":"2026-03-05T16:06:01.479+0530","file":"server/main.go:55","message":"Initializing done!!!!"}
+{"level":"INFO","time":"2026-03-05T16:06:01.479+0530","file":"server/main.go:57","message":"Application listening on 8000"}
+{"level":"INFO","time":"2026-03-05T16:10:31.798+0530","file":"server/main.go:24","message":"=========================== LOGS START HERE ==========================="}
+{"level":"INFO","time":"2026-03-05T16:10:31.800+0530","file":"server/main.go:25","message":"Logger initialized"}
+{"level":"INFO","time":"2026-03-05T16:10:31.800+0530","file":"server/main.go:33","message":"Mongo client initialized"}
+{"level":"INFO","time":"2026-03-05T16:10:31.809+0530","file":"server/main.go:41","message":"Redis client initialized"}
+{"level":"INFO","time":"2026-03-05T16:10:31.809+0530","file":"server/main.go:55","message":"Initializing done!!!!"}
+{"level":"INFO","time":"2026-03-05T16:10:31.809+0530","file":"server/main.go:57","message":"Application listening on 8000"}
+{"level":"INFO","time":"2026-03-05T16:17:36.361+0530","file":"server/main.go:24","message":"=========================== LOGS START HERE ==========================="}
+{"level":"INFO","time":"2026-03-05T16:17:36.362+0530","file":"server/main.go:25","message":"Logger initialized"}
+{"level":"INFO","time":"2026-03-05T16:17:36.363+0530","file":"server/main.go:33","message":"Mongo client initialized"}
+{"level":"INFO","time":"2026-03-05T16:17:36.371+0530","file":"server/main.go:41","message":"Redis client initialized"}
+{"level":"INFO","time":"2026-03-05T16:17:36.372+0530","file":"server/main.go:55","message":"Initializing done!!!!"}
+{"level":"INFO","time":"2026-03-05T16:17:36.372+0530","file":"server/main.go:57","message":"Application listening on 8000"}
+{"level":"INFO","time":"2026-03-05T16:20:25.279+0530","file":"server/main.go:24","message":"=========================== LOGS START HERE ==========================="}
+{"level":"INFO","time":"2026-03-05T16:20:25.280+0530","file":"server/main.go:25","message":"Logger initialized"}
+{"level":"INFO","time":"2026-03-05T16:20:25.280+0530","file":"server/main.go:33","message":"Mongo client initialized"}
+{"level":"INFO","time":"2026-03-05T16:20:25.286+0530","file":"server/main.go:41","message":"Redis client initialized"}
+{"level":"INFO","time":"2026-03-05T16:20:25.286+0530","file":"server/main.go:55","message":"Initializing done!!!!"}
+{"level":"INFO","time":"2026-03-05T16:20:25.286+0530","file":"server/main.go:57","message":"Application listening on 8000"}
+{"level":"INFO","time":"2026-03-05T16:24:26.066+0530","file":"server/main.go:24","message":"=========================== LOGS START HERE ==========================="}
+{"level":"INFO","time":"2026-03-05T16:24:26.067+0530","file":"server/main.go:25","message":"Logger initialized"}
+{"level":"INFO","time":"2026-03-05T16:24:26.068+0530","file":"server/main.go:33","message":"Mongo client initialized"}
+{"level":"INFO","time":"2026-03-05T16:24:26.073+0530","file":"server/main.go:41","message":"Redis client initialized"}
+{"level":"INFO","time":"2026-03-05T16:24:26.073+0530","file":"server/main.go:55","message":"Initializing done!!!!"}
+{"level":"INFO","time":"2026-03-05T16:24:26.073+0530","file":"server/main.go:57","message":"Application listening on 8000"}
+{"level":"INFO","time":"2026-03-05T16:25:18.016+0530","file":"server/main.go:24","message":"=========================== LOGS START HERE ==========================="}
+{"level":"INFO","time":"2026-03-05T16:25:18.017+0530","file":"server/main.go:25","message":"Logger initialized"}
+{"level":"INFO","time":"2026-03-05T16:25:18.018+0530","file":"server/main.go:33","message":"Mongo client initialized"}
+{"level":"INFO","time":"2026-03-05T16:25:18.027+0530","file":"server/main.go:41","message":"Redis client initialized"}
+{"level":"INFO","time":"2026-03-05T16:25:18.028+0530","file":"server/main.go:55","message":"Initializing done!!!!"}
+{"level":"INFO","time":"2026-03-05T16:25:18.028+0530","file":"server/main.go:57","message":"Application listening on 8000"}
+{"level":"INFO","time":"2026-03-05T16:30:20.095+0530","file":"server/main.go:24","message":"=========================== LOGS START HERE ==========================="}
+{"level":"INFO","time":"2026-03-05T16:30:20.097+0530","file":"server/main.go:25","message":"Logger initialized"}
+{"level":"INFO","time":"2026-03-05T16:30:20.097+0530","file":"server/main.go:33","message":"Mongo client initialized"}
+{"level":"INFO","time":"2026-03-05T16:30:20.110+0530","file":"server/main.go:41","message":"Redis client initialized"}
+{"level":"INFO","time":"2026-03-05T16:30:20.110+0530","file":"server/main.go:55","message":"Initializing done!!!!"}
+{"level":"INFO","time":"2026-03-05T16:30:20.110+0530","file":"server/main.go:57","message":"Application listening on 8000"}
+{"level":"INFO","time":"2026-03-05T16:32:52.714+0530","file":"server/main.go:24","message":"=========================== LOGS START HERE ==========================="}
+{"level":"INFO","time":"2026-03-05T16:32:52.715+0530","file":"server/main.go:25","message":"Logger initialized"}
+{"level":"INFO","time":"2026-03-05T16:32:52.715+0530","file":"server/main.go:33","message":"Mongo client initialized"}
+{"level":"INFO","time":"2026-03-05T16:32:52.722+0530","file":"server/main.go:41","message":"Redis client initialized"}
+{"level":"INFO","time":"2026-03-05T16:32:52.722+0530","file":"server/main.go:55","message":"Initializing done!!!!"}
+{"level":"INFO","time":"2026-03-05T16:32:52.722+0530","file":"server/main.go:57","message":"Application listening on 8000"}

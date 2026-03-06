@@ -23,6 +23,14 @@ func ErrorHttpHandling(err config.Errors) APIResponse {
 	}
 }
 
+func GetSuccessResponse(message string) APIResponse {
+	return APIResponse{
+		Message:    message,
+		Status:     string(config.Success),
+		StatusCode: http.StatusOK,
+	}
+}
+
 func SendResponse(w http.ResponseWriter, response APIResponse) {
 	w.Header().Set("Content-Type", "application/json")
 	w.Header().Set("Access-Control-Allow-Headers", "Content-Type")

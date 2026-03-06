@@ -50,6 +50,7 @@ const (
 	TooManyRequests    ErrorCode = "LIQ-101"
 	SessionIssueError  ErrorCode = "LIQ-102"
 	SessionDecodeError ErrorCode = "LIQ-103"
+	InvalidToken       ErrorCode = "LIQ-104"
 
 	// 2xx Error Codes
 
@@ -75,6 +76,7 @@ var (
 	ErrPasswordHashError  = Errors{Message: "Failed to hash password", Code: PasswordHashError, Status: Failure, StatusCode: http.StatusInternalServerError}
 	ErrSessionIssueError  = Errors{Message: "Failed to issue session", Code: SessionIssueError, Status: Failure, StatusCode: http.StatusInternalServerError}
 	ErrSomethingWentWrong = Errors{Message: "Something went wrong", Code: SessionDecodeError, Status: Failure, StatusCode: http.StatusInternalServerError}
+	ErrInvalidToken       = Errors{Message: "Invalid token", Code: InvalidToken, Status: Failure, StatusCode: http.StatusUnauthorized}
 
 	ErrInvalidRequest    = Errors{Message: "Invalid request", Code: InvalidRequest, Status: Failure, StatusCode: http.StatusBadRequest}
 	ErrInvalidUser       = Errors{Message: "Invalid user", Code: InvalidUser, Status: Failure, StatusCode: http.StatusBadRequest}

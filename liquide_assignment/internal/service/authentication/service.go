@@ -2,7 +2,10 @@ package authentication
 
 import (
 	"context"
+	"errors"
 	"fmt"
+	"liquide_assignment/internal/config"
+	"liquide_assignment/internal/response"
 	"net/http"
 	"strings"
 	"time"
@@ -23,63 +26,65 @@ func (s *service) ValidateSession(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		authHeader := r.Header.Get("Authorization")
 		if authHeader == "" {
-			http.Error(w, "Authorization header required", http.StatusUnauthorized)
+			err := config.Wrap(errors.New("Authorization header required"), config.ErrInvalidToken)
+			err.Message = "Authorization header required"
+			response.HandleError(w, err)
 			return
 		}
 
 		const prefix = "Bearer "
 
 		if !strings.HasPrefix(authHeader, prefix) {
-			http.Error(w, "Invalid token", http.StatusUnauthorized)
+			response.HandleError(w, config.ErrInvalidToken)
 			return
 		}
 
 		token := strings.TrimPrefix(authHeader, prefix)
 		if token == "" {
-			http.Error(w, "Invalid token", http.StatusUnauthorized)
+			response.HandleError(w, config.ErrInvalidToken)
 			return
 		}
 
 		tokenParsed, err := s.VerifyJWT(token)
 		if err != nil {
-			http.Error(w, "Invalid token", http.StatusUnauthorized)
+			response.HandleError(w, config.ErrInvalidToken)
 			return
 		}
 
 		platform := tokenParsed.Claims.(jwt.MapClaims)["platform"].(string)
 		userId := tokenParsed.Claims.(jwt.MapClaims)["user_id"].(string)
 		sessionId := tokenParsed.Claims.(jwt.MapClaims)["session_id"].(string)
-		expireAt := tokenParsed.Claims.(jwt.MapClaims)["exp_at"].(time.Time)
+		expireAt := tokenParsed.Claims.(jwt.MapClaims)["exp_at"].(float64)
 
 		key := "user:session:" + userId + ":" + platform
 
 		keyValueMap, err := s.redisRepo.HGetAll(key)
 		if err != nil {
 			if err == rueidis.Nil {
-				http.Error(w, "Invalid token", http.StatusUnauthorized)
+				response.HandleError(w, config.ErrInvalidToken)
 				return
 			} else {
-				http.Error(w, "Internal Server Error", http.StatusInternalServerError)
+				response.HandleError(w, config.ErrInternalServerErrorRedis)
 				return
 			}
 		}
 
 		if _, ok := keyValueMap[sessionId]; !ok {
-			http.Error(w, "Invalid token", http.StatusUnauthorized)
+			response.HandleError(w, config.ErrInvalidToken)
 			return
 		}
 
 		if keyValueMap[sessionId] != token {
-			http.Error(w, "Invalid token", http.StatusUnauthorized)
+			response.HandleError(w, config.ErrInvalidToken)
 			return
 		}
 
-		if expireAt.Before(time.Now()) {
-			http.Error(w, "Invalid token", http.StatusUnauthorized)
+		if time.Unix(int64(expireAt), 0).Before(time.Now()) {
+			response.HandleError(w, config.ErrInvalidToken)
 			return
 		}
 
-		httpCTX := context.WithValue(r.Context(), "jSessionId", token)
+		httpCTX := context.WithValue(r.Context(), "session_id", token)
 		next.ServeHTTP(w, r.WithContext(httpCTX))
 	})
 }
@@ -93,6 +98,6 @@ func (s *service) VerifyJWT(tokenString string) (*jwt.Token, error) {
 			return nil, fmt.Errorf("unexpected signing method")
 		}
 
-		return s.config.SessionConfig.Secret, nil
+		return []byte(s.config.SessionConfig.Secret), nil
 	})
 }

@@ -2,6 +2,9 @@ package login
 
 import (
 	"liquide_assignment/internal/config"
+	"net/mail"
+	"regexp"
+	"strings"
 	"time"
 )
 
@@ -41,4 +44,51 @@ func (r *LoginRequest) SetDefaults() {
 type tokenWithExp struct {
 	Token string
 	Exp   time.Time
+}
+
+var panRegex = regexp.MustCompile(`^[A-Z]{5}[0-9]{4}[A-Z]{1}$`)
+
+func (s *SignupRequest) Validate() bool {
+	if s.Email == "" {
+		return false
+	}
+
+	_, err := mail.ParseAddress(s.Email)
+	if err != nil {
+		return false
+	}
+
+	if s.Password == "" {
+		return false
+	}
+
+	if len(s.Password) < 8 {
+		return false
+	}
+
+	if s.Name == "" {
+		return false
+	}
+
+	if s.Mobile == "" {
+		return false
+	}
+
+	if len(s.Mobile) != 10 {
+		return false
+	}
+
+	if s.Pan == "" {
+		return false
+	}
+
+	if len(s.Pan) != 10 {
+		return false
+	}
+
+	if !panRegex.MatchString(strings.ToUpper(strings.TrimSpace(s.Pan))) {
+		return false
+	}
+
+	return true
 }

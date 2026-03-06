@@ -60,6 +60,7 @@ func Login(ls login.LoginService) http.HandlerFunc {
 			return
 		}
 		apiResponse := response.NewAPIResponse(resp.Message, config.Success, http.StatusOK)
+		apiResponse.Data = resp.Data
 		response.SendResponse(w, apiResponse)
 	}
 }

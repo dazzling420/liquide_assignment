@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"liquide_assignment/internal/config"
 	"liquide_assignment/internal/logger"
+	"liquide_assignment/internal/response"
 	"net/http"
 	"sort"
 	"time"
@@ -42,8 +43,7 @@ func (s *service) Signup(request *json.Decoder) (*Response, error) {
 		err = config.Wrap(err, config.ErrInvalidRequest)
 		return nil, err
 	}
-	isUserValid := checkUserValidity(&signupRequest)
-	if !isUserValid {
+	if !signupRequest.Validate() {
 		s.logger.Error("Invalid user")
 		return nil, config.ErrInvalidUser
 	}
@@ -70,7 +70,7 @@ func (s *service) Signup(request *json.Decoder) (*Response, error) {
 	return &Response{Message: "User added Successfully", Status: config.Success, ErrorCode: ""}, nil
 }
 
-func (s *service) Login(request *json.Decoder) (*Response, error) {
+func (s *service) Login(request *json.Decoder) (*response.APIResponse, error) {
 	var loginRequest LoginRequest
 	err := request.Decode(&loginRequest)
 	if err != nil {
@@ -78,6 +78,7 @@ func (s *service) Login(request *json.Decoder) (*Response, error) {
 		err = config.Wrap(err, config.ErrInvalidRequest)
 		return nil, err
 	}
+	loginRequest.SetDefaults()
 
 	userDetails, err := s.mongoRepo.GetUser(loginRequest)
 	if err != nil {
@@ -130,7 +131,9 @@ func (s *service) Login(request *json.Decoder) (*Response, error) {
 		s.logger.Error("Failed to add session to database", err)
 		return nil, config.ErrDatabaseUpdateErrorRedis
 	}
-	return &Response{Message: "User Logged In Successfully", Status: config.Success, ErrorCode: ""}, nil
+	resp := response.GetSuccessResponse("User Logged In Successfully")
+	resp.Data = sessionToken
+	return &resp, nil
 }
 
 func (s *service) CheckRateLimited(request *http.Request) (int64, error) {
