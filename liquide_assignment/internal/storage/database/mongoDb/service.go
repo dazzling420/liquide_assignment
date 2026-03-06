@@ -49,3 +49,18 @@ func (s *MongoRepository) AddOrderEntry(orderRequest order.OrderRequest) (bool, 
 	}
 	return true, nil
 }
+
+func (s *MongoRepository) GetOrderBook(userId string) ([]order.OrderRequest, error) {
+	collection := s.db.Database("liquide").Collection("orders")
+	var result []order.OrderRequest
+	filter := bson.M{"user_id": userId}
+	cursor, err := collection.Find(s.ctx, filter)
+	if err != nil {
+		return nil, err
+	}
+	err = cursor.All(s.ctx, &result)
+	if err != nil {
+		return nil, err
+	}
+	return result, nil
+}

@@ -9,6 +9,7 @@ import (
 	"liquide_assignment/internal/service/authentication"
 	"liquide_assignment/internal/service/login"
 	"liquide_assignment/internal/service/order"
+	"liquide_assignment/internal/service/report"
 	"liquide_assignment/internal/storage/database"
 	mongodb "liquide_assignment/internal/storage/database/mongoDb"
 	"liquide_assignment/internal/storage/database/redis"
@@ -48,9 +49,10 @@ func main() {
 	// Creating Services
 	loginService := login.InitLoginService(loggerService, config, redisRepo, mongoRepo, jwtRepo)
 	orderService := order.InitOrderService(loggerService, config, redisRepo, mongoRepo, jwtRepo)
+	reportService := report.InitReportService(loggerService, config, redisRepo, mongoRepo, jwtRepo)
 	authService := authentication.InitAuthService(loggerService, config, redisRepo, mongoRepo, jwtRepo)
 
-	router := rest.InitHandlerNew(authService, loginService, orderService)
+	router := rest.InitHandlerNew(authService, loginService, orderService, reportService)
 
 	loggerService.Info("Initializing done!!!!")
 
