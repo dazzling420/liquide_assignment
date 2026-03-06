@@ -5,7 +5,7 @@ A backend application built with Go that provides an API for user authentication
 ## Tech Stack
 
 - **Language:** Go (1.25.3)
-- **Web Framework:** Gin (v1.11.0)
+- **Web Framework:** chi (v1.5.5)
 - **Database:**
   - MongoDB (via `mongo-driver`)
   - Redis (via `rueidis`)
@@ -28,7 +28,7 @@ A backend application built with Go that provides an API for user authentication
 
 ## Setup and Configuration
 
-The application loads configuration from the `config/` directory based on the `-env` flag. 
+The application loads configuration from the `config/` directory based on the `-env` flag. By Default the env is set to "test"
 
 ### Running the Application
 
@@ -39,7 +39,7 @@ cd cmd/server
 go run main.go -env test
 ```
 
-The server listens on port `8080` by default.
+The server listens on port `8000` by default.
 
 ## API Endpoints
 
@@ -47,9 +47,15 @@ The following REST API endpoints are exposed.
 
 ### Authentication
 
-- **POST `/signup`**: Register a new user.
-  - Body: `{"username": "your_username", "password": "your_password"}`
-- **POST `/login`**: Authenticate a user and receive a JWT token.
+- **POST `/v1/signup`**: Register a new user.
+  - Body: `{
+    "email": "your_email",
+    "password": "your_password",
+    "pan": "your_pan",
+    "mobile": "your_mobile",
+    "name": "your_name"
+}`
+- **POST `/v1/login`**: Authenticate a user and receive a JWT token.
   - Body: `{"username": "your_username", "password": "your_password"}`
   - Returns: A JWT token to be used in the `Authorization` header.
 
@@ -57,14 +63,12 @@ The following REST API endpoints are exposed.
 
 Requires the `Authorization: Bearer <token>` header for access.
 
-- **POST `/buy`**: Place a new buy order.
-  - Body: `{"price": 100, "quantity": 10}`
+- **POST `/v1/order`**: Place a new buy order.
+  - Body: `{
+    "name" : "ordering_item",
+    "isin" : "12345678",
+    "quantity" : 1,
+    "price" : 100.00,
+    "order_type" : "BUY"
+}`
 - **GET `/orderbook`**: Retrieve the current order book and view existing orders.
-
-## Verification
-
-You can verify the API functionality using the provided `verify.sh` script, which sends a series of `curl` requests to test the signup, login, buy, and orderbook flow.
-
-```bash
-./verify.sh
-```
